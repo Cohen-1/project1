@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Forum Topics</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='forum.css') }}" />
+</head>
+<body>
+  <div class="forum-container">
+    <a href="{{ url_for('dashboard') }}" class="back-button">← Back</a>
+
+    <h1>Forum Topics</h1>
+
+    <a href="{{ url_for('new_topic') }}" class="create-topic-btn">+ Create New Topic</a>
+
+    <ul class="topic-list">
+      {% for topic in topics %}
+        <li class="{% if topic[3] %}new-topic-highlight{% endif %}">
+          <a href="{{ url_for('topic', topic_id=topic[0]) }}" class="topic-title">
+            {{ topic[1] }}
+          </a>
+          <span class="topic-author">by {{ topic[2] }}</span>
+        </li>
+      {% endfor %}
+    </ul>
+
+    {% if selected_topic %}
+      <hr>
+      <section class="selected-topic">
+        <h2>{{ selected_topic.title }}</h2>
+        <p><strong>By {{ selected_topic.author }}</strong></p>
+        <p>{{ selected_topic.content }}</p>
+      </section>
+
+      <section class="comments-section">
+        <h3>Comments</h3>
+
+        {% for comment in comments %}
+          <div class="comment">
+            <p>{{ comment.content }}</p>
+            <p><em>by {{ comment.email }}</em></p>
+
+            {% if comment.email == session['email'] %}
+              <form action="{{ url_for('edit_comment') }}" method="POST" class="edit-form">
+                <input type="hidden" name="comment_id" value="{{ comment.id }}">
+                <textarea name="edited_content" rows="3" required>{{ comment.content }}</textarea><br>
+                <button type="submit">Save Edit</button>
+              </form>
+
+              <form action="{{ url_for('delete_comment') }}" method="POST" onsubmit="return confirm('Delete this comment?')" class="delete-form">
+                <input type="hidden" name="comment_id" value="{{ comment.id }}">
+                <button type="submit">Delete</button>
+              </form>
+            {% endif %}
+
+            <!-- Replies -->
+            {% for reply in replies %}
+              {% if reply.comment_id == comment.id %}
+                <div class="reply">
+                  <p>{{ reply.content }}</p>
+                  <p><em>by {{ reply.email }}</em></p>
+
+                  {% if reply.email == session['email'] %}
+                    <form action="{{ url_for('edit_reply') }}" method="POST" class="edit-form">
+                      <input type="hidden" name="reply_id" value="{{ reply.id }}">
+                      <textarea name="edited_content" rows="3" required>{{ reply.content }}</textarea><br>
+                      <button type="submit">Save Edit</button>
+                    </form>
+
+                    <form action="{{ url_for('delete_reply') }}" method="POST" onsubmit="return confirm('Delete this reply?')" class="delete-form">
+                      <input type="hidden" name="reply_id" value="{{ reply.id }}">
+                      <button type="submit">Delete</button>
+                    </form>
+                  {% endif %}
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+        {% endfor %}
+      </section>
+    {% endif %}
+  </div>
+</body>
+</html>

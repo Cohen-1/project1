@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+</head>
+<body>
+    <div class="top-right">
+        <a href="{{ url_for('logout') }}" class="logout-button">Logout</a>
+
+            <button class="btn btn-logout">Log out</button>
+        </a>
+    </div>
+
+    <h1>Welcome, Admin ({{ email }})</h1>
+
+    <div class="columns-container">
+        <div class="column">
+            <h2>Students</h2>
+            <ul class="user-list">
+                {% if students %}
+                    {% for student in students %}
+                    <li>
+                        {{ student[1] }}
+                        <form method="POST" action="{{ url_for('delete_user', user_id=student[0]) }}" class="inline-form">
+                            <button type="submit" class="btn btn-remove" onclick="return confirm('Are you sure you want to remove this student?')">Remove</button>
+                        </form>
+                    </li>
+                    {% endfor %}
+                {% else %}
+                    <li>No students found.</li>
+                {% endif %}
+            </ul>
+        </div>
+
+        <div class="column">
+            <h2>Instructors</h2>
+            <ul class="user-list">
+                {% if instructors %}
+                    {% for instructor in instructors %}
+                    <li>
+                        {{ instructor[1] }}
+                        <form method="POST" action="{{ url_for('delete_user', user_id=instructor[0]) }}" class="inline-form">
+                            <button type="submit" class="btn btn-remove" onclick="return confirm('Are you sure you want to remove this instructor?')">Remove</button>
+                        </form>
+                    </li>
+                    {% endfor %}
+                {% else %}
+                    <li>No instructors found.</li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

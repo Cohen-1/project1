@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Your Notifications</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+</head>
+<body>
+    <h1>Notifications</h1>
+    <a href="{{ url_for('dashboard') }}">Back to Dashboard</a> <!-- Adjust route as needed -->
+
+    <ul>
+        {% if notifications %}
+            {% for notif in notifications %}
+                <li>
+                    <strong>{{ notif[1] }}</strong>: {{ notif[2] }}
+                    <form action="{{ url_for('hide_notification') }}" method="post" style="display:inline;">
+                        <input type="hidden" name="notification_id" value="{{ notif[0] }}">
+                        <button type="submit">Hide</button>
+                    </form>
+                </li>
+            {% endfor %}
+        {% else %}
+            <li>No notifications.</li>
+        {% endif %}
+    </ul>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard_student.css') }}">
+</head>
+<body>
+    <!-- Sidebar Toggle Button -->
+    <button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <h2>Notifications</h2>
+        {% if notifications %}
+            {% for note in notifications %}
+                <div class="notification">{{ note[0] }}</div>
+            {% endfor %}
+        {% else %}
+            <p>No new replies.</p>
+        {% endif %}
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content" id="main-content">
+        <div class="logout top-right">
+            <a href="{{ url_for('logout') }}" class="logout-button">Logout</a>
+        </div>
+
+        
+        <h1>Welcome, {{ email }} (Student)</h1>
+
+        <ul>
+            <li><a href="{{ url_for('forum') }}">Go to Forum</a></li>
+            <li><a href="{{ url_for('announcement') }}">View Announcements</a></li>
+        </ul>
+    </div>
+
+    <script>
+        function toggleSidebar() {
+            document.getElementById("sidebar").classList.toggle("collapsed");
+            document.getElementById("main-content").classList.toggle("collapsed");
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Instructor Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard_instructor.css') }}" />
+</head>
+<body>
+    <a href="{{ url_for('logout') }}" class="logout-button">Logout</a>
+
+    <div class="container">
+        <h1>Welcome, {{ email }} (Instructor)</h1>
+
+        <nav>
+            <a href="{{ url_for('forum') }}">Go to Forum</a>
+            <a href="{{ url_for('announcement') }}">Post/View Announcements</a>
+        </nav>
+
+       
+    </div>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Forum Topic</title> <!-- or appropriate title -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='topic.css') }}" />
+</head>
+
+
+<script>
+function toggleReplyForm(id) {
+    const form = document.getElementById('reply-form-' + id);
+    if (form) {
+        form.style.display = form.style.display === 'none' ? 'block' : 'none';
+    }
+}
+</script>
+
+<script>
+function toggleReplyForm(id) {
+    const form = document.getElementById('reply-form-' + id);
+    if (form) {
+        form.style.display = form.style.display === 'none' ? 'block' : 'none';
+    }
+}
+
+function toggleEditForm(id, type) {
+    const formId = (type === 'comment') ? 'edit-comment-form-' + id : 'edit-reply-form-' + id;
+    const form = document.getElementById(formId);
+    if (form) {
+        form.style.display = form.style.display === 'none' ? 'block' : 'none';
+    }
+}
+</script>
+
+
+
+<body>
+    <div class="forum-container">
+        <h1>Forum Topics</h1>
+
+        <!-- Back button -->
+        <a href="{{ url_for('forum') }}" class="back-button">← Back</a>
+
+        <a href="{{ url_for('new_topic') }}" class="create-topic-btn">+ Create New Topic</a>
+        <ul class="topic-list">
+            {% for topic in topics %}
+                <li class="{% if topic[3] %}new-topic-highlight{% endif %}">
+                    <a href="{{ url_for('topic', topic_id=topic[0]) }}" class="topic-title">{{ topic[1] }}</a>
+                    <span class="topic-author">by {{ topic[2] }}</span>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>

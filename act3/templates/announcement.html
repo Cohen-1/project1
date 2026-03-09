@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Announcements</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='announcement.css') }}" />
+</head>
+<body>
+    <div class="container">
+        <a href="{{ url_for('dashboard') }}" class="back-button">← Back</a>
+        
+        <h2>Announcements</h2>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <ul class="flashes">
+                    {% for category, message in messages %}
+                        <li class="{{ category }}">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+
+        {% if session.get('role') == 'instructor' %}
+        <form method="POST" action="{{ url_for('announcement') }}">
+            <textarea name="content" placeholder="Write a new announcement..." required></textarea>
+            <button type="submit">Post Announcement</button>
+        </form>
+        {% endif %}
+
+        <div class="announcement-list">
+            {% for ann in announcements %}
+            <div class="announcement-item">
+                <p>{{ ann.content }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

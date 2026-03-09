@@ -1,0 +1,101 @@
+/* General page styling */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+  font-family: Arial, sans-serif;
+}
+
+/* Forum container */
+.forum-container {
+  max-width: 800px;
+  margin: 60px auto 40px;
+  padding: 20px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+/* Page title */
+.forum-container h1 {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+/* Back button */
+.back-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  text-decoration: none;
+  font-size: 1rem;
+  color: #007bff;
+  background-color: transparent;
+  padding: 6px 12px;
+  border-radius: 4px;
+  transition: background 0.2s, color 0.2s;
+}
+.back-button:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+/* Create topic button */
+.create-topic-btn {
+  display: inline-block;
+  margin-bottom: 20px;
+  font-size: 1rem;
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background 0.2s;
+}
+.create-topic-btn:hover {
+  background-color: #218838;
+}
+
+/* Topic list */
+.topic-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.topic-list li {
+  padding: 15px 20px;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background 0.2s;
+}
+.topic-list li:hover {
+  background-color: #f1f1f1;
+}
+
+/* Highlight for new topics */
+.new-topic-highlight {
+  background-color: #e9f7ef;
+}
+
+/* Topic title link */
+.topic-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #007bff;
+  text-decoration: none;
+}
+.topic-title:hover {
+  text-decoration: underline;
+}
+
+/* Topic author */
+.topic-author {
+  font-size: 0.9rem;
+  color: #555;
+}

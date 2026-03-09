@@ -1,0 +1,90 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f6f9;
+    margin: 0;
+    padding: 20px;
+    color: #333;
+}
+
+.top-right {
+    text-align: right;
+    margin-bottom: 20px;
+}
+
+.btn {
+    cursor: pointer;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-logout {
+    background-color: #e53e3e; /* red */
+    color: white;
+}
+
+.btn-logout:hover {
+    background-color: #c53030;
+}
+
+.btn-remove {
+    background-color: #3182ce; /* blue */
+    color: white;
+}
+
+.btn-remove:hover {
+    background-color: #2b6cb0;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.columns-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px; /* space between columns */
+    flex-wrap: wrap; /* responsive stacking */
+}
+
+.column {
+    flex: 1 1 300px; /* grow, shrink, basis */
+    max-width: 400px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.column h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #4a4a4a;
+}
+
+ul.user-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+ul.user-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    border-bottom: 1px solid #ddd;
+}
+
+ul.user-list li:last-child {
+    border-bottom: none;
+}
+
+form.inline-form {
+    margin: 0;
+}

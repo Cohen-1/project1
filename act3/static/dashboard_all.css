@@ -1,0 +1,135 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f6f9;
+    margin: 0;
+    padding: 20px;
+    color: #333;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+h2 {
+    text-align: center;
+    color: #4a4a4a;
+    margin-bottom: 30px;
+    font-weight: 700;
+    font-size: 1.75rem;
+    letter-spacing: 0.03em;
+}
+
+/* Container for the columns */
+.columns-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+    padding: 0 10px; /* small side padding for narrow screens */
+}
+
+/* Each column */
+.column {
+    flex: 1 1 320px;
+    max-width: 420px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    padding: 20px;
+    transition: box-shadow 0.3s ease;
+}
+
+.column:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+/* Headings inside columns */
+.column h2 {
+    margin-top: 0;
+    margin-bottom: 25px;
+    font-weight: 700;
+    font-size: 1.6rem;
+    color: #2c3e50;
+}
+
+/* User list styling */
+.user-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Each user list item */
+.user-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 20px;
+    border-bottom: 1px solid #e1e4e8;
+    font-size: 1rem;
+    color: #2d3748;
+    transition: background-color 0.2s ease;
+}
+
+.user-list li:hover {
+    background-color: #f9fafb;
+}
+
+.user-list li:last-child {
+    border-bottom: none;
+}
+
+/* Form for inline buttons */
+.inline-form {
+    margin: 0;
+}
+
+/* Top right logout container */
+.top-right {
+    text-align: right;
+    margin-bottom: 25px;
+}
+
+/* Base button styles */
+.btn {
+    cursor: pointer;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    user-select: none;
+}
+
+/* Button hover scale effect */
+.btn:hover {
+    transform: scale(1.05);
+}
+
+/* Focus-visible outline for accessibility */
+.btn:focus-visible {
+    outline: 3px solid #90cdf4;
+    outline-offset: 2px;
+}
+
+/* Logout button */
+.btn-logout {
+    background-color: #e53e3e; /* red */
+    color: white;
+}
+
+.btn-logout:hover {
+    background-color: #c53030;
+}
+
+/* Remove buttons */
+.btn-remove {
+    background-color: #3182ce; /* blue */
+    color: white;
+}
+
+.btn-remove:hover {
+    background-color: #2b6cb0;
+}

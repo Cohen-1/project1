@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>{{ topic.title }}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='topic.css') }}" />
+</head>
+<body>
+  <div class="topic-page">
+    <!-- Back Button -->
+    <a href="{{ url_for('forum') }}" class="back-button">← Back</a>
+
+    <!-- Topic Content -->
+    <div class="topic-main">
+      <h1>{{ topic.title }}</h1>
+      <p class="topic-author">By {{ topic.email }}</p>
+      <p class="topic-description">{{ topic.description }}</p>
+
+      <!-- New Comment Form -->
+      <form action="{{ url_for('topic', topic_id=topic.id) }}" method="POST" class="comment-form">
+        <textarea name="content" placeholder="Write a comment..." required></textarea>
+        <button type="submit">Post Comment</button>
+      </form>
+
+      <!-- Comments and Replies -->
+      <ul class="comment-list">
+        {% for c in comments %}
+        <li class="comment-item">
+          <div class="comment-header">
+            <span class="comment-author">{{ c.email }}</span>
+            <span class="comment-time">{{ c.time_since }}</span>
+          </div>
+          <div class="comment-body">
+            <p>{{ c.content }}</p>
+          </div>
+
+          <!-- Reply Toggle -->
+          <div class="comment-actions">
+            <button type="button"
+                    class="reply-toggle"
+                    onclick="toggleReplyForm('{{ c.id }}')">
+              Reply
+            </button>
+          </div>
+
+          <!-- Reply Form -->
+          <form id="reply-form-{{ c.id }}"
+                class="reply-form"
+                action="{{ url_for('add_reply') }}"
+                method="POST">
+            <input type="hidden" name="comment_id" value="{{ c.id }}">
+            <input type="hidden" name="topic_id" value="{{ topic.id }}">
+            <textarea name="reply_content" placeholder="Write a reply..." required></textarea>
+            <button type="submit">Post Reply</button>
+          </form>
+
+          <!-- Replies -->
+          {% if replies_by_comment.get(c.id) %}
+          <ul class="reply-list">
+            {% for r in replies_by_comment[c.id] %}
+            <li class="reply-item">
+              <div class="reply-header">
+                <span class="reply-author">{{ r.email }}</span>
+                <span class="reply-time">{{ r.time_since }}</span>
+              </div>
+              <div class="reply-body">
+                <p>{{ r.content }}</p>
+              </div>
+            </li>
+            {% endfor %}
+          </ul>
+          {% endif %}
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    function toggleReplyForm(id) {
+      const form = document.getElementById('reply-form-' + id);
+      if (form) {
+        form.style.display = (form.style.display === 'block') ? 'none' : 'block';
+      }
+    }
+  </script>
+</body>
+</html>
